@@ -86,13 +86,14 @@ public class ClassFileBuilder {
         int size = in.readShort();
         ConstantPool pool = new ConstantPool(size);
 
-        while(size >= pool.getCurrentSize()){
+        while(size > pool.getCurrentSize()){
             int tag = in.readByte();
             ConstantInfoFactory factory = ConstantInfoFactoryBuilder.getBuilder().getFactory(tag);
             if(factory == null){
                 throw new UnknownConstantInfoException(tag + ": unknown tag");
             }
             ConstantInfo info = factory.create(in);
+            info.index = pool.getCurrentSize();
             pool.add(info);
         }
 

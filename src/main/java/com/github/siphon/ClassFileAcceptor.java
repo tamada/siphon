@@ -71,7 +71,7 @@ public class ClassFileAcceptor {
     private String getClassName(int index, ConstantPool pool){
         ConstantClassInfo ccInfo = pool.getClassInfo(index);
         if(ccInfo != null){
-            ccInfo.getNameValue();
+            return ccInfo.getNameValue();
         }
         return String.format(NOT_CLASS_INFO, index);
     }
@@ -89,51 +89,48 @@ public class ClassFileAcceptor {
     }
 
     private void acceptConstantInfo(ConstantPoolVisitor visitor, ConstantInfo info){
-        int index = 1;
         switch(info.getType()){
         case Utf8:
-            visitor.visitUtf8Info(index, (ConstantUtf8Info)info);
+            visitor.visitUtf8Info((ConstantUtf8Info)info);
             break;
         case Class:
-            visitor.visitClassInfo(index, (ConstantClassInfo)info);
+            visitor.visitClassInfo((ConstantClassInfo)info);
             break;
         case Double:
-            visitor.visitDoubleInfo(index, (ConstantNumberInfo)info);
-            index++;
+            visitor.visitDoubleInfo((ConstantNumberInfo)info);
             break;
         case Fieldref:
-            visitor.visitFieldrefInfo(index, (ConstantRefInfo)info);
+            visitor.visitFieldrefInfo((ConstantRefInfo)info);
             break;
         case Float:
-            visitor.visitFloatInfo(index, (ConstantNumberInfo)info);
+            visitor.visitFloatInfo((ConstantNumberInfo)info);
             break;
         case Integer:
-            visitor.visitIntegerInfo(index, (ConstantNumberInfo)info);
+            visitor.visitIntegerInfo((ConstantNumberInfo)info);
             break;
         case InterfaceMethodref:
-            visitor.visitInterfaceMethodrefInfo(index, (ConstantRefInfo)info);
+            visitor.visitInterfaceMethodrefInfo((ConstantRefInfo)info);
             break;
         case InvokeDynamic:
-            visitor.visitInvokeDynamicInfo(index, (ConstantInvokeDynamicInfo)info);
+            visitor.visitInvokeDynamicInfo((ConstantInvokeDynamicInfo)info);
             break;
         case Long:
-            visitor.visitLongInfo(index, (ConstantNumberInfo)info);
-            index++;
+            visitor.visitLongInfo((ConstantNumberInfo)info);
             break;
         case MethodHandle:
-            visitor.visitMethodHandleInfo(index, (ConstantMethodHandleInfo)info);
+            visitor.visitMethodHandleInfo((ConstantMethodHandleInfo)info);
             break;
         case Methodref:
-            visitor.visitMethodrefInfo(index, (ConstantRefInfo)info);
+            visitor.visitMethodrefInfo((ConstantRefInfo)info);
             break;
         case MethodType:
-            visitor.visitMethodTypeInfo(index, (ConstantMethodTypeInfo)info);
+            visitor.visitMethodTypeInfo((ConstantMethodTypeInfo)info);
             break;
         case NameAndType:
-            visitor.visitNameAndTypeInfo(index, (ConstantNameAndTypeInfo)info);
+            visitor.visitNameAndTypeInfo((ConstantNameAndTypeInfo)info);
             break;
         case String:
-            visitor.visitStringInfo(index, (ConstantStringInfo)info);
+            visitor.visitStringInfo((ConstantStringInfo)info);
             break;
         default:
         }

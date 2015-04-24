@@ -18,9 +18,14 @@ public abstract class ConstantInfo {
         }
     };
     Type type;
+    int index;
 
     public ConstantInfo(Type type){
         this.type = type;
+    }
+
+    public int getIndex(){
+        return index;
     }
 
     public int getTag(){

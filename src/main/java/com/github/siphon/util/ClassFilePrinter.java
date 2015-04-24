@@ -45,7 +45,8 @@ public class ClassFilePrinter extends ClassFileVisitor{
 
     @Override
     public void visitBody(int access, String className, String superName) {
-        out.println(AccessFlags.toStringClass(access));
+        System.out.printf("class access: %s%n", Integer.toHexString(access));
+        out.print(AccessFlags.toStringClass(access));
         out.println(" " + className + " extends " + superName);
     }
 
@@ -109,87 +110,87 @@ public class ClassFilePrinter extends ClassFileVisitor{
             this.out = out;
         }
 
-        private String format(int index, ConstantInfo info, String value){
-            return String.format("#%3d %s %s", index, info.getClass().getName(), value);
+        private String format(ConstantInfo info, String value){
+            return String.format("#%3d %s %s", info.getIndex(), info.getClass().getName(), value);
         }
 
         @Override
-        public void visitUtf8Info(int index, ConstantUtf8Info info) {
-            out.println(format(index, info, info.getValue()));
+        public void visitUtf8Info(ConstantUtf8Info info) {
+            out.println(format(info, info.getValue()));
         }
 
         @Override
-        public void visitStringInfo(int index, ConstantStringInfo info) {
-            out.println(format(index, info, String.format("#%3d // -> %s", info.getStringIndex(), info.getStringValue())));
+        public void visitStringInfo(ConstantStringInfo info) {
+            out.println(format(info, String.format("#%3d // -> %s", info.getStringIndex(), info.getStringValue())));
         }
 
         @Override
-        public void visitIntegerInfo(int index, ConstantNumberInfo info) {
-            out.println(format(index, info, info.getValue().toString()));
+        public void visitIntegerInfo(ConstantNumberInfo info) {
+            out.println(format(info, info.getValue().toString()));
         }
 
         @Override
-        public void visitFloatInfo(int index, ConstantNumberInfo info) {
-            out.println(format(index, info, info.getValue().toString()));
+        public void visitFloatInfo(ConstantNumberInfo info) {
+            out.println(format(info, info.getValue().toString()));
         }
 
         @Override
-        public void visitLongInfo(int index, ConstantNumberInfo info) {
-            out.println(format(index, info, info.getValue().toString()));
+        public void visitLongInfo(ConstantNumberInfo info) {
+            out.println(format(info, info.getValue().toString()));
         }
 
         @Override
-        public void visitDoubleInfo(int index, ConstantNumberInfo info) {
-            out.println(format(index, info, info.getValue().toString()));
+        public void visitDoubleInfo(ConstantNumberInfo info) {
+            out.println(format(info, info.getValue().toString()));
         }
 
         @Override
-        public void visitClassInfo(int index, ConstantClassInfo info) {
-            out.println(format(index, info, String.format("name: #%3d // -> %s", info.getNameIndex(), info.getNameValue())));
+        public void visitClassInfo(ConstantClassInfo info) {
+            out.println(format(info, String.format("name: #%3d // -> %s", info.getNameIndex(), info.getNameValue())));
         }
 
         @Override
-        public void visitFieldrefInfo(int index, ConstantRefInfo info) {
+        public void visitFieldrefInfo(ConstantRefInfo info) {
             int classIndex = info.getClassIndex();
             int nameIndex = info.getNameAndTypeIndex();
             
-            out.println(format(index, info, String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, info)));
+            out.println(format(info, String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, info)));
         }
 
         @Override
-        public void visitMethodrefInfo(int index, ConstantRefInfo info) {
+        public void visitMethodrefInfo(ConstantRefInfo info) {
             int classIndex = info.getClassIndex();
             int nameIndex = info.getNameAndTypeIndex();
             
-            out.println(format(index, info, String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, info)));
+            out.println(format(info, String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, info)));
         }
 
         @Override
-        public void visitInterfaceMethodrefInfo(int index, ConstantRefInfo info) {
+        public void visitInterfaceMethodrefInfo(ConstantRefInfo info) {
             int classIndex = info.getClassIndex();
             int nameIndex = info.getNameAndTypeIndex();
             
-            out.println(format(index, info, String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, info)));
+            out.println(format(info, String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, info)));
         }
 
         @Override
-        public void visitNameAndTypeInfo(int index, ConstantNameAndTypeInfo info) {
+        public void visitNameAndTypeInfo(ConstantNameAndTypeInfo info) {
             int nameIndex = info.getNameIndex();
             int descIndex = info.getDescriptorIndex();
             
-            out.println(format(index, info, String.format("name: #%3d, desc: %3d // -> %s", nameIndex, descIndex, info)));
+            out.println(format(info, String.format("name: #%3d, desc: %3d // -> %s", nameIndex, descIndex, info)));
         }
 
         @Override
-        public void visitMethodHandleInfo(int index, ConstantMethodHandleInfo info) {
+        public void visitMethodHandleInfo(ConstantMethodHandleInfo info) {
         }
 
         @Override
-        public void visitMethodTypeInfo(int index, ConstantMethodTypeInfo info) {
+        public void visitMethodTypeInfo(ConstantMethodTypeInfo info) {
         }
 
         @Override
-        public void visitInvokeDynamicInfo(int index, ConstantInvokeDynamicInfo info) {
+        public void visitInvokeDynamicInfo(ConstantInvokeDynamicInfo info) {
         }
     }
 }

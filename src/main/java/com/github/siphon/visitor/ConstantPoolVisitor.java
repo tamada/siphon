@@ -26,87 +26,87 @@ public class ConstantPoolVisitor {
         }
     }
 
-    public void visitUtf8Info(int index, ConstantUtf8Info info){
+    public void visitUtf8Info(ConstantUtf8Info info){
         if(visitor != null){
-            visitor.visitUtf8Info(index, info);
+            visitor.visitUtf8Info(info);
         }
     }
 
-    public void visitStringInfo(int index, ConstantStringInfo info){
+    public void visitStringInfo(ConstantStringInfo info){
         if(visitor != null){
-            visitor.visitStringInfo(index, info);
+            visitor.visitStringInfo(info);
         }
     }
 
-    public void visitIntegerInfo(int index, ConstantNumberInfo info){
+    public void visitIntegerInfo(ConstantNumberInfo info){
         if(visitor != null){
-            visitor.visitIntegerInfo(index, info);
+            visitor.visitIntegerInfo(info);
         }
     }
 
-    public void visitFloatInfo(int index, ConstantNumberInfo info){
+    public void visitFloatInfo(ConstantNumberInfo info){
         if(visitor != null){
-            visitor.visitFloatInfo(index, info);
+            visitor.visitFloatInfo(info);
         }
     }
     
-    public void visitLongInfo(int index, ConstantNumberInfo info){
+    public void visitLongInfo(ConstantNumberInfo info){
         if(visitor != null){
-            visitor.visitLongInfo(index, info);
+            visitor.visitLongInfo(info);
         }
     }
 
-    public void visitDoubleInfo(int index, ConstantNumberInfo info){
+    public void visitDoubleInfo(ConstantNumberInfo info){
         if(visitor != null){
-            visitor.visitDoubleInfo(index, info);
+            visitor.visitDoubleInfo(info);
         }
     }
 
-    public void visitClassInfo(int index, ConstantClassInfo info){
+    public void visitClassInfo(ConstantClassInfo info){
         if(visitor != null){
-            visitor.visitClassInfo(index, info);
+            visitor.visitClassInfo(info);
         }
     }
 
-    public void visitFieldrefInfo(int index, ConstantRefInfo info){
+    public void visitFieldrefInfo(ConstantRefInfo info){
         if(visitor != null){
-            visitor.visitFieldrefInfo(index, info);
+            visitor.visitFieldrefInfo(info);
         }
     }
 
-    public void visitMethodrefInfo(int index, ConstantRefInfo info){
+    public void visitMethodrefInfo(ConstantRefInfo info){
         if(visitor != null){
-            visitor.visitMethodrefInfo(index, info);
+            visitor.visitMethodrefInfo(info);
         }
     }
 
-    public void visitInterfaceMethodrefInfo(int index, ConstantRefInfo info){
+    public void visitInterfaceMethodrefInfo(ConstantRefInfo info){
         if(visitor != null){
-            visitor.visitInterfaceMethodrefInfo(index, info);
+            visitor.visitInterfaceMethodrefInfo(info);
         }
     }
 
-    public void visitNameAndTypeInfo(int index, ConstantNameAndTypeInfo info){
+    public void visitNameAndTypeInfo(ConstantNameAndTypeInfo info){
         if(visitor != null){
-            visitor.visitNameAndTypeInfo(index, info);
+            visitor.visitNameAndTypeInfo(info);
         }
     }
 
-    public void visitMethodHandleInfo(int index, ConstantMethodHandleInfo info){
+    public void visitMethodHandleInfo(ConstantMethodHandleInfo info){
         if(visitor != null){
-            visitor.visitMethodHandleInfo(index, info);
+            visitor.visitMethodHandleInfo(info);
         }
     }
 
-    public void visitMethodTypeInfo(int index, ConstantMethodTypeInfo info){
+    public void visitMethodTypeInfo(ConstantMethodTypeInfo info){
         if(visitor != null){
-            visitor.visitMethodTypeInfo(index, info);
+            visitor.visitMethodTypeInfo(info);
         }
     }
 
-    public void visitInvokeDynamicInfo(int index, ConstantInvokeDynamicInfo info){
+    public void visitInvokeDynamicInfo(ConstantInvokeDynamicInfo info){
         if(visitor != null){
-            visitor.visitInvokeDynamicInfo(index, info);
+            visitor.visitInvokeDynamicInfo(info);
         }
     }
 }

@@ -51,7 +51,7 @@ public class ConstantPool implements Iterable<ConstantInfo>{
     }
 
     int getCurrentSize(){
-        return pool.size() + 1;
+        return pool.size();
     }
 
     public ConstantInfo get(int index){

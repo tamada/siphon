@@ -85,9 +85,11 @@ public class AccessFlags {
         if(isOn(access, ACC_FINAL))      items.add("final");
         if(isOn(access, ACC_ABSTRACT))   items.add("abstract");
         if(isOn(access, ACC_SYNTHETIC))  items.add("synthetic");
-        if(isOn(access, ACC_INTERFACE))  items.add("interface");
+        if(isOn(access, ACC_ANNOTATION)) items.add("@interface");
         if(isOn(access, ACC_ENUM))       items.add("enum");
-        if(isOn(access, ACC_ANNOTATION)) items.add("annotation");
+        if(isOn(access, ACC_INTERFACE) && isOff(access, ACC_ANNOTATION)){
+            items.add("interface");
+        }
         if(isOff(access, ACC_INTERFACE | ACC_ENUM | ACC_ANNOTATION)){
             items.add("class");
         }
