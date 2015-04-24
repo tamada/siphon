@@ -1,4 +1,4 @@
-package com.github.siphon;
+package com.github.siphon.util;
 
 import java.util.ArrayList;
 import java.util.List;

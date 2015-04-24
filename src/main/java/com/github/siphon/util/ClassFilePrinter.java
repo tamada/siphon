@@ -2,9 +2,7 @@ package com.github.siphon.util;
 
 import java.io.PrintWriter;
 
-import com.github.siphon.AccessFlags;
 import com.github.siphon.ConstantInfo;
-import com.github.siphon.Descriptor;
 import com.github.siphon.constants.ConstantClassInfo;
 import com.github.siphon.constants.ConstantInvokeDynamicInfo;
 import com.github.siphon.constants.ConstantMethodHandleInfo;
@@ -111,7 +109,14 @@ public class ClassFilePrinter extends ClassFileVisitor{
         }
 
         private String format(ConstantInfo info, String value){
-            return String.format("#%3d %s %s", info.getIndex(), info.getClass().getName(), value);
+            String className = info.getClass().getName();
+            int index = className.lastIndexOf("Constant");
+            className = className.substring(index + "Constant".length(), className.length() - 4);
+            return String.format("#%3d %-11s %s", info.getIndex(), className, value);
+        }
+
+        private String format(ConstantInfo info, String className, String value){
+            return String.format("#%3d %-11s %s", info.getIndex(), className, value);
         }
 
         @Override
@@ -153,16 +158,30 @@ public class ClassFilePrinter extends ClassFileVisitor{
         public void visitFieldrefInfo(ConstantRefInfo info) {
             int classIndex = info.getClassIndex();
             int nameIndex = info.getNameAndTypeIndex();
-            
-            out.println(format(info, String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, info)));
+
+            String className = info.getClassInfo().getNameValue();
+            String nameValue = info.getNameAndTypeInfo().getNameValue();
+            String descValue = info.getNameAndTypeInfo().getDescriptorValue();
+
+            String infoString = String.format("%s.%s %s", className, nameValue, descValue);
+
+            out.println(format(info, "Fieldref",
+                    String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, infoString)));
         }
 
         @Override
         public void visitMethodrefInfo(ConstantRefInfo info) {
             int classIndex = info.getClassIndex();
             int nameIndex = info.getNameAndTypeIndex();
-            
-            out.println(format(info, String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, info)));
+
+            String className = info.getClassInfo().getNameValue();
+            String nameValue = info.getNameAndTypeInfo().getNameValue();
+            String descValue = info.getNameAndTypeInfo().getDescriptorValue();
+
+            String infoString = String.format("%s.%s %s", className, nameValue, descValue);
+
+            out.println(format(info, "Methodref",
+                    String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, infoString)));
         }
 
         @Override
@@ -170,7 +189,14 @@ public class ClassFilePrinter extends ClassFileVisitor{
             int classIndex = info.getClassIndex();
             int nameIndex = info.getNameAndTypeIndex();
             
-            out.println(format(info, String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, info)));
+            String className = info.getClassInfo().getNameValue();
+            String nameValue = info.getNameAndTypeInfo().getNameValue();
+            String descValue = info.getNameAndTypeInfo().getDescriptorValue();
+
+            String infoString = String.format("%s.%s %s", className, nameValue, descValue);
+
+            out.println(format(info, "InterfaceMethodRef",
+                    String.format("class: #%3d, name and type: %3d // -> %s", classIndex, nameIndex, infoString)));
         }
 
         @Override
@@ -178,7 +204,7 @@ public class ClassFilePrinter extends ClassFileVisitor{
             int nameIndex = info.getNameIndex();
             int descIndex = info.getDescriptorIndex();
             
-            out.println(format(info, String.format("name: #%3d, desc: %3d // -> %s", nameIndex, descIndex, info)));
+            out.println(format(info, String.format("name: #%3d, desc: %3d", nameIndex, descIndex)));
         }
 
         @Override

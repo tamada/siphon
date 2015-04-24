@@ -34,6 +34,8 @@ public class ConstantRefInfo extends ConstantInfo {
     public void resolve(ConstantPool pool) {
         classInfo = pool.getClassInfo(classIndex);
         nameAndTypeInfo = pool.getNameAndTypeInfo(nameAndTypeIndex);
+        classInfo.resolve(pool);
+        nameAndTypeInfo.resolve(pool);
     }
 
 }
